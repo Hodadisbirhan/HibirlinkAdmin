@@ -1,0 +1,18 @@
+query {
+  city: region_city {
+    id
+    name: original_language {
+      to: translation_contents {
+        name
+      }
+    }
+    sub_cities {
+      id
+      name: original_language {
+        to: translation_contents {
+          name
+        }
+      }
+    }
+  }
+}

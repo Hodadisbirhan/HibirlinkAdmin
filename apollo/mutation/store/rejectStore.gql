@@ -1,0 +1,9 @@
+mutation($store_id:bigint!,$input:SendEmailInput!){
+  delete_store_by_pk(id:$store_id){
+    id
+  }
+    sendEmail(input:$input)
+  {
+    message 
+  }
+}

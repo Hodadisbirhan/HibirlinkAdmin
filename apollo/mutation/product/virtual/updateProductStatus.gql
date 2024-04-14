@@ -1,0 +1,9 @@
+mutation($id:bigint!,$status:String,$input:SendEmailInput!,$reviewer_id:String){
+  update_virtual_product_by_pk(pk_columns:{id:$id},_set:{release_status:$status,reviewer_id:$reviewer_id}){
+     id
+  }
+  sendEmail(input:$input)
+  {
+    message 
+  }
+}

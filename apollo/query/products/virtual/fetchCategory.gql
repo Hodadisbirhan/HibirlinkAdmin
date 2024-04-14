@@ -1,0 +1,17 @@
+query {
+  category: virtual_product_category {
+    id
+    logo
+    language: original_language {
+      id
+      en: translation_contents(where: { language_type: { _eq: "en" } }) {
+        name
+        id: original_content_id
+      }
+      am: translation_contents(where: { language_type: { _eq: "am" } }) {
+        name
+        id: original_content_id
+      }
+    }
+  }
+}

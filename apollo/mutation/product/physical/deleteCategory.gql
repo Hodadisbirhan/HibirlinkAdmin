@@ -1,0 +1,5 @@
+mutation($id:Int!){
+  delete_translation_original_language_by_pk(id:$id){
+    id
+  }
+}

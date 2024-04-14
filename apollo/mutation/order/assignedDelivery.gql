@@ -1,0 +1,8 @@
+mutation assignedDeliveryToOrder(
+  $order_id: bigint!
+  $set: product_order_set_input!
+) {
+  update_product_order_by_pk(_set: $set, pk_columns: { id: $order_id }) {
+    customer_id
+  }
+}

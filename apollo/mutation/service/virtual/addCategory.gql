@@ -1,0 +1,19 @@
+mutation ($logo: String, $en_name: String, $am_name: String) {
+  insert_service_virtual_service_category_one(
+    object: {
+      logo: $logo
+      original_language: {
+        data: {
+          translation_contents: {
+            data: [
+              { language_type: "en", name: $en_name }
+              { language_type: "am", name: $am_name }
+            ]
+          }
+        }
+      }
+    }
+  ) {
+    id
+  }
+}

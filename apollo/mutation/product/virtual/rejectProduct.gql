@@ -1,0 +1,9 @@
+mutation($id:String!,$input:SendEmailInput!){
+  delete_virtual_product_by_pk(id:$id){
+    id
+  }
+    sendEmail(input:$input)
+  {
+    message 
+  }
+}

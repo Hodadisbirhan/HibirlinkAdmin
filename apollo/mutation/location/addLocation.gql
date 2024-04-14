@@ -1,0 +1,5 @@
+mutation($object:[region_city_insert_input!]!){
+  insert_region_city(objects:$object){
+    affected_rows
+  }
+}

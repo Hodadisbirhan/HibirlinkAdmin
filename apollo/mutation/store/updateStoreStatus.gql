@@ -1,0 +1,9 @@
+mutation($store_id:bigint!,$status:String,$input:SendEmailInput!,$reason:String,$reviewer_id:String){
+  update_store_by_pk(pk_columns:{id:$store_id},_set:{status:$status,reason:$reason,reviewer_id:$reviewer_id}){
+    id
+  }
+   sendEmail(input:$input)
+  {
+    message 
+  }
+}

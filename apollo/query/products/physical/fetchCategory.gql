@@ -1,0 +1,34 @@
+
+
+query {
+  category: physical_product_category {
+    id
+    logo
+    language: original_language {
+      id
+      en: translation_contents(where: { language_type: { _eq: "en" } }) {
+        name
+        id:original_content_id
+      }
+      am: translation_contents(where: { language_type: { _eq: "am" } }) {
+        name
+        id:original_content_id
+      }
+    }
+    sub_categories: physical_product_sub_categories {
+      id
+      logo
+      language: original_language {
+        id
+        en: translation_contents(where: { language_type: { _eq: "en" } }) {
+          name
+          id:original_content_id
+        }
+        am: translation_contents(where: { language_type: { _eq: "am" } }) {
+          name
+          id:original_content_id
+        }
+      }
+    }
+  }
+}

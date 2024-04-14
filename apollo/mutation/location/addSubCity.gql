@@ -1,0 +1,5 @@
+mutation ($object: sub_city_insert_input!) {
+  insert_sub_city_one(object: $object) {
+    id
+  }
+}

@@ -1,0 +1,32 @@
+query ($where: store_bool_exp, $limit: Int!, $offset: Int!) {
+  store(where: $where, limit: $limit, offset: $offset) {
+    id
+    name
+    category
+    created_at
+    delivered_product
+    description
+    reviewer {
+      first_name
+    }
+    bank_account {
+      account_number
+      first_name
+      last_name
+      account_number
+    }
+    phone_number
+    supplier {
+      userById {
+        email
+      }
+    }
+    licence
+    release_status: status
+  }
+  total: store_aggregate {
+    store: aggregate {
+      value: count
+    }
+  }
+}

@@ -1,0 +1,94 @@
+query (
+  $where: product_order_bool_exp!
+  $order_detail_exp: order_detail_bool_exp
+  $limit: Int
+  $offset: Int
+) {
+  product_order(where: $where, limit: $limit, offset: $offset) {
+    shipping_fee
+    status
+    id
+    delivery_id
+    with_delivery
+    user {
+      first_name
+      last_name
+      email
+    }
+    driver {
+      user {
+        first_name
+        last_name
+        email
+        phone_number
+      }
+    }
+    created_at
+    transaction_key
+    delivery_provider {
+      name
+      user {
+        first_name
+        last_name
+        phone_number
+        email
+      }
+    }
+    shipping_address {
+      phone_number1
+      sub_city {
+        name: original_language {
+          to: translation_contents(where: { language_type: { _eq: "en" } }) {
+            language_type
+            name
+          }
+        }
+        region_city {
+          name: original_language {
+            to: translation_contents(where: { language_type: { _eq: "en" } }) {
+              language_type
+              name
+            }
+          }
+        }
+      }
+    }
+
+    driver {
+      user {
+        first_name
+        last_name
+        phone_number
+      }
+    }
+    order_details(where: $order_detail_exp) {
+      id
+      quantity
+      status
+      unit_price
+      discount
+      special_discount_rate
+      physical_product {
+        id
+        title
+        status
+        store {
+          name
+          supplier {
+            info: userById {
+              first_name
+              last_name
+              email
+              phone_number
+            }
+          }
+        }
+      }
+    }
+  }
+  total: product_order_aggregate(where: $where) {
+    order: aggregate {
+      value: count
+    }
+  }
+}

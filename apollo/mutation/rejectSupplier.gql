@@ -1,0 +1,9 @@
+mutation($supplier_id:String!,$input:SendEmailInput!){
+  delete_supplier_by_pk(id:$supplier_id){
+    id
+  }
+    sendEmail(input:$input)
+  {
+    message 
+  }
+}

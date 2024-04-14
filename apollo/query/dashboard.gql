@@ -1,0 +1,39 @@
+query dashboard($year: timestamptz) {
+  sale_statics: product_order(where: { created_at: { _gte: $year } }) {
+    created_at
+  }
+
+  customer: users(
+    where: { role: { _eq: "customer" }, created_at: { _gte: $year } }
+  ) {
+    created_at
+  }
+
+  supplier(where: { created_at: { _gte: $year } }) {
+    created_at
+  }
+
+  vp: virtual_product_aggregate {
+    total: aggregate {
+      value: count
+    }
+  }
+
+  pp: physical_product_aggregate {
+    total: aggregate {
+      value: count
+    }
+  }
+
+  rs: service_realtime_service_aggregate {
+    total: aggregate {
+      value: count
+    }
+  }
+
+  vs: service_virtual_service_aggregate {
+    total: aggregate {
+      value: count
+    }
+  }
+}

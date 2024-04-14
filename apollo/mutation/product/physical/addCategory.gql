@@ -1,0 +1,5 @@
+mutation($object:[physical_product_category_insert_input!]!){
+  insert_physical_product_category(objects:$object){
+    affected_rows
+  }
+}

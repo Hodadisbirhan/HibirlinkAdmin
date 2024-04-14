@@ -1,0 +1,20 @@
+mutation ($cat_id: bigint!, $logo: String, $en_name: String, $am_name: String) {
+  insert_physical_product_sub_category_one(
+    object: {
+      category_id: $cat_id
+      logo: $logo
+      original_language: {
+        data: {
+          translation_contents: {
+            data: [
+              { language_type: "en", name: $en_name }
+              { language_type: "am", name: $am_name }
+            ]
+          }
+        }
+      }
+    }
+  ) {
+    id
+  }
+}

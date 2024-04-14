@@ -1,0 +1,50 @@
+query ($where: physical_product_bool_exp, $limit: Int, $offset: Int) {
+  products: physical_product(where: $where, limit: $limit, offset: $offset) {
+    id
+    title
+    unit_price
+    store {
+      name
+      supplier {
+        userById {
+          email
+        }
+      }
+    }
+    reviewer {
+      first_name
+    }
+    product_discount {
+      rate
+    }
+    product_status: status
+    release_status
+    is_avaliable
+    quantity
+    cover_image
+    description
+    images: physical_product_media {
+      url
+    }
+    created_at
+    sub_category: physical_product_sub_category {
+      language: original_language {
+        translation_contents(where: { language_type: { _eq: "en" } }) {
+          name
+        }
+      }
+      category: physical_product_category {
+        language: original_language {
+          translation_contents(where: { language_type: { _eq: "en" } }) {
+            name
+          }
+        }
+      }
+    }
+  }
+  total: physical_product_aggregate(where: $where) {
+    product: aggregate {
+      value: count
+    }
+  }
+}

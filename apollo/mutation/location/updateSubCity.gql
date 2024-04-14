@@ -1,0 +1,35 @@
+mutation (
+  $id: Int!
+  $en_name: String
+  $am_name: String
+  $sub_city_id:Int!,
+  $lat:numeric,
+  $long:numeric
+) {
+  update_sub_city_by_pk(pk_columns:{id:$sub_city_id},_set:{latitude:$lat,longitude:$long}){
+    id
+  }
+  en: update_translation_translation_content(
+    where: {
+      _and: [
+        { language_type: { _eq: "en" } }
+        { original_content_id: { _eq: $id } }
+      ]
+    }
+    _set: { name: $en_name }
+  ) {
+    affected_rows
+  }
+  am: update_translation_translation_content(
+    where: {
+      _and: [
+        { language_type: { _eq: "am" } }
+        { original_content_id: { _eq: $id } }
+      ]
+    }
+    _set: { name: $am_name }
+  ) {
+    affected_rows
+  }
+
+}

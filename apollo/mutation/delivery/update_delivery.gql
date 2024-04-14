@@ -1,0 +1,16 @@
+mutation updateDelivery(
+  $update_delivery: delivery_delivery_provider_set_input!
+  $updateUser: users_set_input
+  $user_id: String!
+  $delivery_id: bigint!
+) {
+  update_delivery_delivery_provider_by_pk(
+    _set: $update_delivery
+    pk_columns: { id: $delivery_id }
+  ) {
+    id
+  }
+  update_users_by_pk(pk_columns: { id: $user_id }, _set: $updateUser) {
+    id
+  }
+}

@@ -1,0 +1,17 @@
+mutation (
+  $id: bigint!
+  $status: String
+  $input: SendEmailInput!
+  $reviewer_id: String
+) {
+  update_service_realtime_service_by_pk(
+    pk_columns: { id: $id }
+    _set: { release_status: $status, reviewer_id: $reviewer_id }
+  ) {
+    id
+    release_status
+  }
+  sendEmail(input: $input) {
+    message
+  }
+}

@@ -1,0 +1,11 @@
+query ($where: product_order_bool_exp!) {
+  product_order(where: $where distinct_on: customer_id) {
+    customer_id
+    user {
+      first_name
+      last_name
+      email
+      phone_number
+    }
+  }
+}

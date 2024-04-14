@@ -1,0 +1,36 @@
+mutation (
+  $id: Int!
+  $en_name: String
+  $am_name: String
+  $cat_id: bigint!
+  $logo: String
+) {
+  en: update_translation_translation_content(
+    where: {
+      _and: [
+        { language_type: { _eq: "en" } }
+        { original_content_id: { _eq: $id } }
+      ]
+    }
+    _set: { name: $en_name }
+  ) {
+    affected_rows
+  }
+  am: update_translation_translation_content(
+    where: {
+      _and: [
+        { language_type: { _eq: "am" } }
+        { original_content_id: { _eq: $id } }
+      ]
+    }
+    _set: { name: $am_name }
+  ) {
+    affected_rows
+  }
+  update_physical_product_category_by_pk(
+    pk_columns: { id: $cat_id }
+    _set: { logo: $logo }
+  ) {
+    id
+  }
+}

@@ -1,0 +1,43 @@
+query ($where: delivery_delivery_provider_bool_exp!) {
+  delivery_delivery_provider(where: $where) {
+    id
+    created_at
+    name
+    description
+    license
+    tin_number
+    street_address
+    zip_code
+
+    user {
+      id
+      phone_number
+      email
+      first_name
+      last_name
+      managed_by: user {
+        id
+        phone_number
+        email
+        first_name
+        last_name
+      }
+    }
+    sub_city {
+      name: original_language {
+        to: translation_contents {
+          name
+          language_type
+        }
+      }
+      region_city {
+        name: original_language {
+          to: translation_contents {
+            name
+            language_type
+          }
+        }
+      }
+    }
+  }
+}

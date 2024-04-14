@@ -1,0 +1,5 @@
+mutation delete_delivery($user_id: String!) {
+  delete_users_by_pk(id: $user_id) {
+    id
+  }
+}

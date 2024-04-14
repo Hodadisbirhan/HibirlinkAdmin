@@ -1,0 +1,28 @@
+query ($where: supplier_bool_exp!, $limit: Int!, $offset: Int!) {
+  supplier(where: $where, limit: $limit, offset: $offset) {
+    id
+    userById {
+      first_name
+      last_name
+      email
+      status
+      reason
+      phone_number
+
+      reviewed_by: userByReviewerId {
+        id
+        first_name
+      }
+    }
+
+    social_media
+    created_at
+
+    tin_number
+  }
+  total: supplier_aggregate(where: $where) {
+    supplier: aggregate {
+      value: count
+    }
+  }
+}

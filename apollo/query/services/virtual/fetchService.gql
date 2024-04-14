@@ -1,0 +1,43 @@
+query ($where: service_virtual_service_bool_exp, $limit: Int, $offset: Int) {
+  services: service_virtual_service(
+    where: $where
+    limit: $limit
+    offset: $offset
+  ) {
+    id
+    title
+    license
+    web_link
+    supplier {
+      userById {
+        email
+        first_name
+        phone_number
+      }
+    }
+    reviewer {
+      first_name
+    }
+    logo
+    description
+    release_status
+    images: virtual_service_media {
+      url
+    }
+    created_at
+    category: virtual_service_category {
+      id
+      language: original_language {
+        translation_contents(where: { language_type: { _eq: "en" } }) {
+          name
+        }
+      }
+    }
+  }
+  total: service_virtual_service_aggregate(where: $where) {
+    service: aggregate {
+      value: count
+    }
+  }
+}
+

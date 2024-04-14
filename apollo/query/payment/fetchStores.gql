@@ -1,0 +1,17 @@
+query ($where: store_bool_exp!) {
+  store(where: $where) {
+    id
+    name
+    delivered_product
+    bank_account {
+      account_number
+      bank_type
+    }
+    supplier {
+      userById {
+        first_name
+        last_name
+      }
+    }
+  }
+}

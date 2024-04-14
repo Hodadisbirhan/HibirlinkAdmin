@@ -1,0 +1,9 @@
+mutation($supplier_id:String!,$status:String,$input:SendEmailInput!,$reason:String,$reviewer_id:String){
+  update_users_by_pk(pk_columns:{id:$supplier_id},_set:{status:$status,reason:$reason,reviewer_id:$reviewer_id}){
+    id
+  }
+   sendEmail(input:$input)
+  {
+    message 
+  }
+}

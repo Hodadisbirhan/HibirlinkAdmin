@@ -1,0 +1,6 @@
+mutation add_delivery($value: DeliveryInput!) {
+  addDelivery(value: $value) {
+    message
+    status
+  }
+}

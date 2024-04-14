@@ -1,0 +1,157 @@
+query ($where: order_detail_bool_exp!, $order_where: product_order_bool_exp!) {
+  product_order(where: $order_where) {
+    shipping_fee
+
+    id
+    created_at
+    user {
+      first_name
+      last_name
+    }
+    driver {
+      user {
+        first_name
+        last_name
+        phone_number
+      }
+    }
+    delivery_provider {
+      user {
+        first_name
+        last_name
+        phone_number
+        email
+      }
+    }
+    shipping_address {
+      description
+      email
+      state_provinence
+      zip_code
+      sub_city {
+        name: original_language {
+          to: translation_contents {
+            name
+            language_type
+          }
+        }
+        region_city {
+          name: original_language {
+            to: translation_contents {
+              name
+              language_type
+            }
+          }
+        }
+      }
+    }
+
+    order_details(where: $where) {
+      id
+      quantity
+      status
+      unit_price
+      discount
+      special_discount_rate
+      physical_product {
+        id
+        title
+        store {
+          name
+          supplier {
+            info: userById {
+              first_name
+              last_name
+              email
+              phone_number
+            }
+          }
+          bank_account {
+            account_number
+            bank_type
+            first_name
+            last_name
+          }
+        }
+      }
+    }
+  }
+}
+
+# query ($where: order_detail_bool_exp!) {
+#   order_detail(where: $where) {
+#     product_order {
+#       shipping_fee
+#       status
+#       id
+#       user {
+#         first_name
+#         last_name
+#       }
+#       created_at
+#       driver {
+#         user {
+#           first_name
+#           last_name
+#           phone_number
+#         }
+#       }
+#       delivery_provider {
+#         user {
+#           first_name
+#           last_name
+#           phone_number
+#           email
+#         }
+#       }
+#       shipping_address {
+#         description
+#         email
+#         state_provinence
+#         zip_code
+#         sub_city {
+#           name: original_language {
+#             to: translation_contents {
+#               name
+#               language_type
+#             }
+#           }
+#           region_city {
+#             name: original_language {
+#               to: translation_contents {
+#                 name
+#                 language_type
+#               }
+#             }
+#           }
+#         }
+#       }
+#     }
+#     quantity
+#     status
+#     unit_price
+#     discount
+#     special_discount_rate
+#     physical_product {
+#       id
+#       title
+#       store {
+#         name
+#         supplier {
+#           info: userById {
+#             first_name
+#             last_name
+#             email
+#             phone_number
+#           }
+#         }
+#         bank_account {
+#           account_number
+#           bank_type
+#           first_name
+#           last_name
+#         }
+#       }
+#     }
+#   }
+# }

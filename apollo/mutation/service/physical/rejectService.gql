@@ -1,0 +1,8 @@
+mutation ($id: String!, $input: SendEmailInput!) {
+  delete_service_realtime_service_by_pk(id: $id) {
+    id
+  }
+  sendEmail(input: $input) {
+    message
+  }
+}

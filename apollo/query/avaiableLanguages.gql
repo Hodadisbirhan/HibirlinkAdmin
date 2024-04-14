@@ -1,0 +1,5 @@
+query{
+  language:translation_languages{
+    name
+  }
+}

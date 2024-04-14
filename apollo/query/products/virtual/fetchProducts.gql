@@ -1,0 +1,36 @@
+query ($where: virtual_product_bool_exp, $limit: Int, $offset: Int) {
+  products: virtual_product(where: $where, limit: $limit, offset: $offset) {
+    id
+    title
+    unit_price
+    supplier {
+      userById {
+        email
+      }
+    }
+    reviewer {
+      first_name
+    }
+    cover_image
+    demo_link
+    description
+    release_status
+    images: virtual_product_media {
+      url
+    }
+    created_at
+    category: virtual_product_category {
+      id
+      language: original_language {
+        translation_contents(where: { language_type: { _eq: "en" } }) {
+          name
+        }
+      }
+    }
+  }
+  total: virtual_product_aggregate(where: $where) {
+    product: aggregate {
+      value: count
+    }
+  }
+}
